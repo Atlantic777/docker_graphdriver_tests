@@ -1,5 +1,11 @@
 #!/bin/bash
 
+function f03_load_dependencies {
+    . ../common.sh
+    . ../01_obtain_dockerd/exported.sh
+    . ../02_build_master_docker/exported.sh
+}
+
 function get_repositories_json {
     sudo jq . /var/lib/docker/image/aufs/repositories.json
 }

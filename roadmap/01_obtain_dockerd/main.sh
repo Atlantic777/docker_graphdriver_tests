@@ -1,11 +1,9 @@
 #!/bin/bash
-export WORKDIR="$PWD/workdir"
 export SESSION="session_01"
 
 . exported.sh
-
-# create working dir
-mkdir -p "$WORKDIR"
+f01_load_dependencies
+standard_init
 
 # start tmux
 tmux new -s "$SESSION" -d "bash"
@@ -16,6 +14,8 @@ download_binary
 
 # start dockerd
 tmux send-keys "start_dockerd" C-m
+
+tmux split-window -h
 
 # attach tmux
 tmux attach -t "$SESSION"

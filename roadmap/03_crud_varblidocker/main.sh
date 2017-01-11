@@ -1,18 +1,13 @@
 #!/bin/bash
-
-. exported.sh
-. ../01_obtain_dockerd/exported.sh
-. ../02_build_master_docker/exported.sh
-
-export WORKDIR="$PWD/workdir"
 export SESSION="session_03"
 
-# create workdir
-mkdir -p "$WORKDIR"
+. exported.sh
+f03_load_dependencies
+standard_init
 
 # start tmux
 tmux new -s "$SESSION" -d "bash"
-tmux send-keys ".exported.sh" C-m
+tmux send-keys ". exported.sh" C-m
 tmux send-keys ". ../01_obtain_dockerd/exported.sh" C-m
 tmux send-keys ". ../02_build_master_docker/exported.sh" C-m
 

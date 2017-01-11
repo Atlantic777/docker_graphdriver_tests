@@ -2,6 +2,11 @@
 REPO_URL="https://github.com/docker/docker"
 REPO_NAME="docker-repo"
 
+function f02_load_dependencies {
+    . ../common.sh
+    . ../01_obtain_dockerd/exported.sh
+}
+
 function clone_repo {
     git clone "$REPO_URL" "$WORKDIR/$REPO_NAME"
 }

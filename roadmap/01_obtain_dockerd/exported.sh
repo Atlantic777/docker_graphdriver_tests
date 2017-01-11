@@ -2,6 +2,10 @@
 DOWNLOAD_URL="https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz"
 DOCKER_ARCHIVE_OUT="docker-latest.tgz"
 
+function f01_load_dependencies {
+    . ../common.sh
+}
+
 function download_binary {
     echo "Downloading binary to $WORKDIR"
 
