@@ -1,2 +1,3 @@
 machine_tmp/*.log
 machine_tmp/.vagrant/*
+cache/*
