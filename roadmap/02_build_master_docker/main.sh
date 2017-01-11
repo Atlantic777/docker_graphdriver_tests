@@ -5,21 +5,15 @@ export SESSION="session_02"
 f02_load_dependencies
 standard_init
 
-# start tmux
-tmux new -s "$SESSION" -d "bash"
-tmux send-keys ". exported.sh" C-m
-tmux send-keys ". ../01_obtain_dockerd/exported.sh" C-m
+tmux_start_session "$SESSION"
 
-clone_repo
-tmux send-keys "download_binary" C-m
-tmux send-keys "start_dockerd" C-m
+tmux_exec "f02_load_dependencies"
+tmux_exec "f02_start_new_daemon"
 
-tmux split-window -h
-tmux send-keys ". exported.sh" C-m
-tmux send-keys ". ../01_obtain_dockerd/exported.sh" C-m
-
-tmux send-keys -t 1 "build_docker; stop_old_daemon; start_new_daemon" C-m
+tmux_split
+tmux_exec "f02_load_dependencies"
 
 tmux attach -t "$SESSION"
 
-rm -rfv "$WORKDIR"
+sudo killall dockerd
+rm -rf "$WORKDIR"

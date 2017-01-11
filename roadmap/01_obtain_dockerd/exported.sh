@@ -1,7 +1,7 @@
 #!/bin/bash
-CACHE="../../cache/01"
-DOWNLOAD_URL="https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz"
-DOCKER_ARCHIVE_OUT="$CACHE/docker-latest.tgz"
+C1_CACHE="../../cache/01"
+C1_DOWNLOAD_URL="https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz"
+C1_DOCKER_ARCHIVE_OUT="$C1_CACHE/docker-latest.tgz"
 
 function f01_load_dependencies {
     . ../common.sh
@@ -10,19 +10,19 @@ function f01_load_dependencies {
 function download_binary {
     echo "Downloading binary to $WORKDIR"
 
-    wget "$DOWNLOAD_URL" -O "$WORKDIR/$DOCKER_ARCHIVE_OUT"
-    tar xvf "$WORKDIR/$DOCKER_ARCHIVE_OUT" -C "$WORKDIR"
+    wget "$C1_DOWNLOAD_URL" -O "$WORKDIR/$C1_DOCKER_ARCHIVE_OUT"
+    tar xvf "$WORKDIR/$C1_DOCKER_ARCHIVE_OUT" -C "$WORKDIR"
     sudo cp -v $WORKDIR/docker/* "/usr/local/bin"
 }
 
 function f01_download_binary {
-    if [ ! -f "$DOCKER_ARCHIVE_OUT" ]; then
-       wget "$DOWNLOAD_URL" -O "$DOCKER_ARCHIVE_OUT"
+    if [ ! -f "$C1_DOCKER_ARCHIVE_OUT" ]; then
+       wget "$C1_DOWNLOAD_URL" -O "$C1_DOCKER_ARCHIVE_OUT"
     fi
 }
 
 function f01_extract_binary {
-    tar xvf "$DOCKER_ARCHIVE_OUT" -C "$WORKDIR"
+    tar xvf "$C1_DOCKER_ARCHIVE_OUT" -C "$WORKDIR"
     sudo cp -v $WORKDIR/docker/* "/usr/local/bin"
 }
 

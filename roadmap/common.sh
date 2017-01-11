@@ -14,3 +14,8 @@ function tmux_exec {
     local CMD="$1"
     tmux send-keys "$CMD" C-m
 }
+
+function tmux_split {
+    tmux split-window -h
+    tmux_exec ". exported.sh"
+}
