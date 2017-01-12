@@ -1,11 +1,11 @@
 #!/bin/bash
+export C2_REPO_URL="https://github.com/docker/docker"
+export C2_CACHE="$(pwd)/../../cache/02"
+export C2_LOCAL_REPO_PATH="$C2_CACHE/docker-repo"
 
 function f02_load_dependencies {
     . ../common.sh
     . ../01_obtain_dockerd/exported.sh
-    export C2_REPO_URL="https://github.com/docker/docker"
-    export C2_CACHE="$(pwd)/../../cache/02"
-    export C2_LOCAL_REPO_PATH="$C2_CACHE/docker-repo"
 }
 
 # function clone_repo {
@@ -62,5 +62,5 @@ function f02_get_binaries {
 
 function f02_start_new_daemon {
     f02_get_binaries
-    sudo $C2_CACHE/bin/dockerd -D
+    sudo $C2_CACHE/bin/dockerd -D "$@"
 }
